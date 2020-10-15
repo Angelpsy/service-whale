@@ -50,9 +50,11 @@ const actions: ActionTree<AuthState, RootState> = {
   async logout({ commit }) {
     try {
       await AuthApi.logout();
-      commit('logout');
     } catch (e) {
       console.log(e);
+    } finally {
+      // TODO: временное решение, пока не разобрался с ошибкой логаута на беке
+      commit('logout');
     }
   },
 };

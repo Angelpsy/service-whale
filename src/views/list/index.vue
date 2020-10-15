@@ -72,8 +72,9 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Lead, StatusesLead } from '@/types/lead';
 import LeadsApi from '@/api/leads';
 import { LEAD_STATUSES } from '@/constatns/leads';
-
-const dateTimeFormatUS = new Intl.DateTimeFormat('en-US');
+import { dateTimeFormatUS } from '@/utils/format';
+import { debounce } from '@/utils/perfomance';
+import { DELAY_BEFORE_REQUEST } from '@/constatns/perfomance';
 
 @Component({
   filters: {
@@ -136,10 +137,14 @@ export default class ListPage extends Vue {
     }
   }
 
-  fetchDataAfterChangeFilter() {
-    // TODO: добавить debounce
+  _fetchDataAfterChangeFilter() {
     this.fetchData();
   }
+
+  /**
+   * fetchData with debounce
+   */
+  fetchDataAfterChangeFilter = debounce(this._fetchDataAfterChangeFilter, DELAY_BEFORE_REQUEST);
 
   onChangePage(page: number) {
     this.currentPage = page;

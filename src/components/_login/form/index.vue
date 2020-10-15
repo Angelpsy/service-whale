@@ -1,5 +1,5 @@
 <template>
-  <v-form class="b-login-form" @submit="onSubmit" :disabled="loading">
+  <v-form class="b-login-form" @submit.prevent="onSubmit" :disabled="loading">
     <div class="b-login-form__title">Log in</div>
     <div class="b-login-form__subtitle">Using your email and password</div>
     <div class="b-login-form__control">

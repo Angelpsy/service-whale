@@ -57,6 +57,7 @@ export default class App extends Vue {
     this.loading = true;
     try {
       await this.$store.dispatch('auth/logout');
+      this.$router.replace({ name: 'Login' });
     } catch (e) {
       console.log(e);
     } finally {

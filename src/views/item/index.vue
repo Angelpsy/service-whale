@@ -57,8 +57,6 @@
                     placeholder="Show all Job"
                     outlined
                     hide-details
-                    clearable
-                    background-color="#ffffff"
                     @change="onChangeStatus"
                   />
                 </v-col>
@@ -68,8 +66,7 @@
                     outlined
                     hide-details
                     :value="item.statusComment"
-                    background-color="#ffffff"
-                    @input="onChangeComment"
+                    @change="onChangeComment"
                   />
                 </v-col>
               </v-row>
@@ -86,6 +83,8 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import { Lead, StatusesLead } from '@/types/lead';
 import LeadsApi from '@/api/leads';
 import { LEAD_STATUSES } from '@/constatns/leads';
+import { debounce } from '@/utils/perfomance';
+import { DELAY_BEFORE_REQUEST } from '@/constatns/perfomance';
 // TODO: разобраться с цветом кнопки назад
 
 @Component({})
@@ -117,22 +116,28 @@ export default class ItemPage extends Vue {
       [fieldName]: value,
     };
     try {
-      await LeadsApi.updateItem(newData);
-      this.item[fieldName] = value;
+      const { item } = await LeadsApi.updateItem(newData);
+      this.item = item;
     } catch (e) {
       console.log(e);
     }
   }
 
   onChangeStatus(status: StatusesLead) {
-    // TODO: добавить debounce
     this.sendUpdatedDataByField('leadStatus', status);
   }
 
-  onChangeComment(comment: string) {
-    // TODO: добавить debounce
+  _onChangeComment(comment: string) {
     this.sendUpdatedDataByField('statusComment', comment);
   }
+
+  /**
+   * onChangeComment with debounce
+   * Возможно не лучшее решение, следует использовать, если необходимо снизить нагрузку на сервер
+   * Но если с сервером все ок, то лучше не использовать debounce
+   * (уменьшится проблема синхронизации вводимых данных и обновленных)
+   */
+  onChangeComment = debounce(this._onChangeComment, DELAY_BEFORE_REQUEST);
 
   mounted() {
     this.fetchData();
