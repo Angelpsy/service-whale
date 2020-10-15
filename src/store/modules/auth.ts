@@ -11,8 +11,11 @@ interface AuthState {
   _isAuth: boolean;
 }
 
+// Просто для упрощения разработки,
+// предполагается, что запросы с установкой куки были сделаны ранее
+const DEFAULT_IS_AUTH = process.env.NODE_ENV === 'development' && process.env.VUE_APP_DEV_IS_AUTH ? !!process.env.VUE_APP_DEV_IS_AUTH : false;
 export const authState: AuthState = {
-  _isAuth: false,
+  _isAuth: DEFAULT_IS_AUTH,
 };
 
 const getters: GetterTree<AuthState, RootState> = {

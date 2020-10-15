@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="app">
     <v-app-bar
       app
       color="primary"
@@ -7,22 +7,38 @@
     >
       <v-container>
         <v-row>
-          <div>
-            TODO: col left (CRM)
+          <div class="app__logo">
+            CRM
           </div>
 
           <v-spacer></v-spacer>
 
-          <div>
-            TODO: col right (sign out)
+          <div class="app__logout">
+            <v-btn
+              v-if="isAuth"
+              small
+              light
+              color="white"
+              elevation="0"
+              @click="onLogout"
+            >Sign out</v-btn>
           </div>
         </v-row>
       </v-container>
     </v-app-bar>
 
-    <v-main>
+    <v-main class="app__main">
       <router-view/>
     </v-main>
+
+    <v-footer
+      app
+      :height="56"
+      class="app__footer"
+      color="#ebebeb"
+    >
+      © 2020 — CRM
+    </v-footer>
   </v-app>
 </template>
 
@@ -30,5 +46,35 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class App extends Vue {}
+export default class App extends Vue {
+  loading = false;
+
+  get isAuth(): boolean {
+    return this.$store.getters['auth/isAuth'];
+  }
+
+  async onLogout() {
+    this.loading = true;
+    try {
+      await this.$store.dispatch('auth/logout');
+    } catch (e) {
+      console.log(e);
+    } finally {
+      this.loading = false;
+    }
+  }
+}
 </script>
+
+<style>
+.app {}
+.app__main {
+  background: #f5f5f5;
+}
+.app__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.87);
+}
+</style>

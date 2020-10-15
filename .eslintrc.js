@@ -19,5 +19,6 @@ module.exports = {
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
     'no-underscore-dangle': 'off',
+    'import/prefer-default-export': 'off',
   },
 };

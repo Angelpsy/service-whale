@@ -10,7 +10,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component({})
 export default class ItemPage extends Vue {
-  @Prop(String)
-  readonly id!: string;
+  @Prop([String, Number])
+  readonly id!: string | number;
 }
 </script>
