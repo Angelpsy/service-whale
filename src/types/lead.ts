@@ -19,11 +19,13 @@ export interface CustomerInfo {
   id: number;
   name: string;
   phone: string;
+  email: string;
 }
 
 export interface Lead {
   id: number;
   leadStatus: StatusesLead;
+  statusComment: string;
   customerInfo: CustomerInfo;
   job: string;
   price: Price;
@@ -31,4 +33,8 @@ export interface Lead {
    * Timestamp
    */
   updatedDate: number;
+  serviceAddress: string;
+  serviceAddressRaw: string;
+  billingAddress: string;
+  billingAddressRaw: string;
 }

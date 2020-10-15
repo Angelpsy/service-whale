@@ -17,7 +17,7 @@ interface ResponseList {
 }
 
 const Api = {
-  getList({
+  getItems({
     page = 0,
     size = PER_PAGE_DEFAULT,
     status,
@@ -31,6 +31,14 @@ const Api = {
         search,
       },
     })
+      .then((response) => response.data.data);
+  },
+  getItemById(id: Lead['id']) {
+    return instance.get(`/api/v2/contrlead/${id}`)
+      .then((response) => response.data.data);
+  },
+  updateItem(data: Lead) {
+    return instance.post('/api/v2/contrlead', data)
       .then((response) => response.data.data);
   },
 };

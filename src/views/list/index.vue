@@ -18,6 +18,7 @@
       <v-col class="p-list__select-statuses-wrapper">
         <v-select
           :items="LEAD_STATUSES"
+          :value="selectedStatus"
           placeholder="Show all leads"
           outlined
           hide-details
@@ -69,7 +70,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Lead, StatusesLead } from '@/types/lead';
-import ListApi from '@/api/list';
+import LeadsApi from '@/api/leads';
 import { LEAD_STATUSES } from '@/constatns/leads';
 
 const dateTimeFormatUS = new Intl.DateTimeFormat('en-US');
@@ -120,7 +121,7 @@ export default class ListPage extends Vue {
   async fetchData() {
     this.loading = true;
     try {
-      const response = await ListApi.getList({
+      const response = await LeadsApi.getItems({
         page: this.currentPage - 1,
         search: this.searchQuery,
         status: this.selectedStatus,
