@@ -110,11 +110,11 @@ export default class ItemPage extends Vue {
     }
   }
 
-  async sendUpdatedDataByField(fieldName: keyof Lead, value) {
+  async sendUpdatedDataByField(fieldName: keyof Lead, value: any) {
     const newData = {
       ...this.item,
       [fieldName]: value,
-    };
+    } as Lead;
     try {
       const { item } = await LeadsApi.updateItem(newData);
       this.item = item;

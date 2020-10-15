@@ -81,7 +81,7 @@ import { DELAY_BEFORE_REQUEST } from '@/constatns/perfomance';
 
 @Component({
   filters: {
-    formatDate(val) {
+    formatDate(val: number) {
       return dateTimeFormatUS.format(val);
     },
   },
