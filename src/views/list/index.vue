@@ -34,6 +34,7 @@
         :items="items"
         hide-default-footer
         :sortable="false"
+        :loading="loading"
         class="p-list__main"
         @click:row="onClickItem"
       >
@@ -55,14 +56,16 @@
       </v-data-table>
     </div>
     <div class="p-list__footer">
-      <v-pagination
-        color="primary"
-        :value="currentPage"
-        :total-visible="3"
-        :length="totalPage"
-        class="p-list__pagination"
-        @input="onChangePage"
-      ></v-pagination>
+      <v-row>
+        <v-pagination
+          color="primary"
+          :value="currentPage"
+          :total-visible="3"
+          :length="totalPage"
+          class="p-list__pagination"
+          @input="onChangePage"
+        ></v-pagination>
+      </v-row>
     </div>
   </v-container>
 </template>
@@ -162,7 +165,7 @@ export default class ListPage extends Vue {
   }
 
   onClickItem(item: Lead) {
-    this.$router.push({ name: 'Item', params: { id: item.id } });
+    this.$router.push({ name: 'Item', params: { id: item.id.toString() } });
   }
 
   mounted() {
@@ -177,10 +180,12 @@ export default class ListPage extends Vue {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding-top: 15px;
 }
 .p-list__count {
   font-size: 24px;
   line-height: 28px;
+  padding-top: 21px;
 }
 .p-list__header {
   align-items: baseline;
@@ -189,6 +194,7 @@ export default class ListPage extends Vue {
 }
 .p-list__footer {
   margin-top: auto;
+  margin-bottom: 17px;
 }
 .p-list__pagination .v-pagination{
   justify-content: flex-start;

@@ -1,0 +1,8 @@
+$text-field-line-height: 16px;
+$text-field-filled-full-width-outlined-slot-min-height: 48px;
+
+$text-input-font-size: 14px;
+$label-font-size: $text-input-font-size;
+
+// Required for modifying core defaults
+@import '~vuetify/src/styles/styles.sass';

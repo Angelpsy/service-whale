@@ -90,7 +90,7 @@ import { DELAY_BEFORE_REQUEST } from '@/constatns/perfomance';
 @Component({})
 export default class ItemPage extends Vue {
   @Prop([String, Number])
-  readonly id!: string | number;
+  readonly id!: string;
 
   readonly LEAD_STATUSES = LEAD_STATUSES;
 
@@ -145,7 +145,7 @@ export default class ItemPage extends Vue {
 }
 </script>
 
-<style>
+<style lang="scss">
 .p-item {
   display: flex;
   padding-top: 34px;
@@ -164,12 +164,12 @@ export default class ItemPage extends Vue {
   font-size: 24px;
   line-height: 36px;
   margin-bottom: 13px;
+  margin-top: 10px;
 }
-
 .p-item__contacts {
   display: flex;
+  font-size: 14px;
 }
-
 .p-item__contacts-links {
   display: flex;
   flex-direction: column;
@@ -178,29 +178,30 @@ export default class ItemPage extends Vue {
 .p-item__contacts-link {
   text-decoration: none;
 }
-.p-item__contacts-link--email {
-  color: inherit;
-}
 .p-item__contacts-address-name {
   color: rgba(0, 0, 0, 0.38);
   min-width: 105px;
 }
-
 .p-item__form-wrapper {
-  margin-top: 27px;
+  margin-top: 25px;
+  max-width: 963px;
 }
 .p-item__form {
-  padding: 12px;
+  padding: 12px 12px 0;
 }
 .p-item__form-title {
-  margin-bottom: 5px;
+  margin-bottom: 9px;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
 }
 .p-item__form-controls {}
 .p-item__form-control {}
+
+$_control-statuses-width: 271px;
 .p-item__form-control--statuses {
-  flex-basis: 250px;
-  max-width: 250px;
+  flex-basis: $_control-statuses-width;
+  max-width: $_control-statuses-width;
   flex-grow: 0;
   flex-shrink: 0;
 }

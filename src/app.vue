@@ -4,6 +4,8 @@
       app
       color="primary"
       dark
+      height="53"
+      elevation="0"
     >
       <v-container>
         <v-row>
@@ -33,11 +35,13 @@
 
     <v-footer
       app
-      :height="56"
+      :height="66"
       class="app__footer"
       color="#ebebeb"
     >
-      © 2020 — CRM
+      <span class="app_copy">
+        © 2020 — CRM
+      </span>
     </v-footer>
   </v-app>
 </template>
@@ -69,6 +73,12 @@ export default class App extends Vue {
 
 <style>
 .app {}
+.app__logo {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 28px;
+  padding-left: 20px;
+}
 .app__main {
   background: #f5f5f5;
 }
@@ -77,5 +87,9 @@ export default class App extends Vue {
   align-items: center;
   justify-content: center;
   color: rgba(0, 0, 0, 0.87);
+}
+.app_copy {
+  font-size: 14px;
+  line-height: 22px;
 }
 </style>

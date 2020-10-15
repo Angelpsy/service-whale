@@ -1,5 +1,7 @@
 import Vue from 'vue';
+import '@/scss/variables.scss';
 import Vuetify from 'vuetify/lib';
+import '@/scss/overrides.scss';
 
 Vue.use(Vuetify);
 

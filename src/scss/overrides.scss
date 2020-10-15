@@ -1,0 +1,11 @@
+.v-input input {
+  font-size: $text-input-font-size;
+}
+
+.v-text-field--enclosed .v-input__append-inner {
+  margin-top: 12px;
+}
+
+.v-application .white.v-btn:before {
+  background-color: #fff;
+}

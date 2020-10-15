@@ -10,6 +10,7 @@
         :password="password"
         :is-can-submit="isCanSubmit"
         :loading="loading"
+        class="rounded-lg"
         @change-field="onChangeField"
         @submit="onSubmit"
       />
