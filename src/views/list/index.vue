@@ -1,6 +1,6 @@
 <template>
-  <div class="p-home">
-    Home page
+  <div class="p-list">
+    List page
   </div>
 </template>
 
@@ -8,5 +8,5 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
-export default class HomePage extends Vue {}
+export default class ListPage extends Vue {}
 </script>
